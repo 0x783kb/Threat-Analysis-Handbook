@@ -1,4 +1,4 @@
-# T1169-Linux-Sudo
+# T1548.003-Linux-Sudo
 ## 来自ATT&CK的描述
 sudoers文件`/etc/sudoers`描述了哪些用户可以运行哪些命令以及从哪些终端运行。这还描述了用户可以作为其他用户或组运行的命令。这提供了最小特权的概念，使得用户在大多数时间以最低可能的权限运行，并且仅在需要时提升到其他用户或权限，通常通过提示输入密码。但是，sudoers文件还可以指定何时不提示用户输入类似`user1 ALL=(ALL) NOPASSWD: ALL` [[1\]](https://blog.malwarebytes.com/threat-analysis/2017/04/new-osx-dok-malware-intercepts-web-traffic/)的行的密码。
 攻击者可以利用这些配置来执行其他用户的命令或生成具有更高权限的进程。您必须具有提升权限才能编辑此文件。

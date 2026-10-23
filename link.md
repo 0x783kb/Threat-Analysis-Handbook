@@ -2,13 +2,16 @@
 
 ## 简介
 
-Threat-Analysis-Handbook目前已覆盖106个TID，326个场景。主要涵盖Web、Windows AD、Linux，涉及ATT&CK技术、模拟测试、检测思路、检测所需数据源等。
+Threat-Analysis-Handbook 按 MITRE ATT&CK 技术编号组织，主要覆盖 Web、Windows、Linux 三类场景。当前覆盖 **105 个 ATT&CK 技术（含子技术共 198 项 TID）**，共 337 篇文档。每篇文档包含 ATT&CK 技术、模拟测试、检测思路与检测所需数据源。
+
+> 统一口径（与 README 一致）：技术数按**文件名中的 TID 去重**统计（T1169 等已废弃编号不计入）。
 
 ![覆盖图](img/index.png)
 
 ## 规则说明
 
-Web_Attck检测规则为Suricata、Sigma两种格式，端点检测规则为Sigma格式为主。
+- 检测规则以 **Sigma 格式为主**（273 条，全部通过 pySigma 解析与 Splunk 后端转换）；Web 方向部分规则同时提供 Suricata 网络检测写法。
+- 规则不依赖 Sysmon，可映射到安全日志 4688 等国内默认可得数据源；规则清单与优化报告见 [Sigma差距分析](Sigma差距分析/本地Sigma规则优化报告.md)。
 
 
 ## 参考链接
