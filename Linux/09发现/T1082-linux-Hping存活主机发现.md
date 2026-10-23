@@ -8,7 +8,7 @@ Linux audit日志
 ## 测试复现
 ```
 bash
-yyds@12306Br0:/var/log/audit$ sudo hping3 -I enp0s5 -S 10.211.55.35 -p 22
+yyds@0x783kb:/var/log/audit$ sudo hping3 -I enp0s5 -S 10.211.55.35 -p 22
 [sudo] yyds 的密码：
 HPING 10.211.55.35 (enp0s5 10.211.55.35): S set, 40 headers + 0 data bytes
 len=40 ip=10.211.55.35 ttl=64 DF id=0 sport=22 flags=RA seq=0 win=0 rtt=7.3 ms

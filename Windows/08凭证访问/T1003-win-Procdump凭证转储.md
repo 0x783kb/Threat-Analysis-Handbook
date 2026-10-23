@@ -180,73 +180,77 @@
 **规则一：检测Procdump转储LSASS行为**：
 ```yaml
 title: Procdump转储LSASS凭据检测
-id: i9d0e1f2-3g4h-5i6j-dk5e-2f3g4h5i6j7k
+id: 2c27be25-3a6b-5ecc-8bcd-9b95f4dc74e0
 status: stable
 description: 检测使用Procdump转储LSASS进程内存以获取凭据的行为
 references:
-  -https://attack.mitre.org/techniques/T1003/
-  -https://adsecurity.org/?p=1760
+  - https://attack.mitre.org/techniques/T1003/
+  - https://adsecurity.org/?p=1760
+date: 2022/06/06
 tags:
-  -attack.credential_access
-  -attack.t1003
+  - attack.credential_access
+  - attack.t1003
 logsource:
   category: process_creation
   product: windows
+# 注意: 依赖 Sysmon 独有字段 OriginalFileName，Windows 安全日志(4688)无对应字段
 detection:
   selection:
-    EventID|in:
-      -4688
-      -1
+    EventID:
+      - 4688
+      - 1
     OriginalFileName: 'procdump'
     CommandLine|contains:
-      -'-malsass.exe'
-      -'lsass.exe'
+      - '-malsass.exe'
+      - 'lsass.exe'
   filter:
     Image|endswith:
-      -'\procdump.exe'
-      -'\procdump64.exe'
+      - '\procdump.exe'
+      - '\procdump64.exe'
   condition: selection and not filter
 fields:
-  -ComputerName
-  -User
-  -Image
-  -CommandLine
-  -OriginalFileName
+  - ComputerName
+  - User
+  - Image
+  - CommandLine
+  - OriginalFileName
 falsepositives:
-  -管理员合法使用Procdump进行调试
-  -安全测试工具误报
+  - 管理员合法使用Procdump进行调试
+  - 安全测试工具误报
 level: critical
 ```
 
 **规则二：检测Procdump访问LSASS进程**：
 ```yaml
 title: Procdump访问LSASS进程检测
-id: j0e1f2g3-4h5i-6j7k-el6f-3g4h5i6j7k8l
+id: 5c3a9b9e-c212-5a6e-bb29-9d447be227f7
 status: stable
 description: 检测Procdump尝试访问LSASS进程的行为
 references:
-  -https://attack.mitre.org/techniques/T1003/
+  - https://attack.mitre.org/techniques/T1003/
+date: 2022/06/06
 tags:
-  -attack.credential_access
-  -attack.t1003
+  - attack.credential_access
+  - attack.t1003
 logsource:
   category: process_access
   product: windows
+# 注意: 依赖 Sysmon 独有字段 SourceImage, TargetImage，Windows 安全日志(4688)无对应字段
 detection:
   selection:
     EventID: 10
     SourceImage|endswith:
-      -'\procdump.exe'
-      -'\procdump64.exe'
+      - '\procdump.exe'
+      - '\procdump64.exe'
     TargetImage|endswith: '\lsass.exe'
   condition: selection
 fields:
-  -ComputerName
-  -SourceImage
-  -TargetImage
-  -CallTrace
+  - ComputerName
+  - SourceImage
+  - TargetImage
+  - CallTrace
 falsepositives:
-  -合法调试工具访问LSASS
+  - 合法调试工具访问LSASS
 level: high
 ```
 

@@ -138,6 +138,10 @@ references:
 - https://attack.mitre.org/techniques/T1119
 - https://github.com/GhostPack/Seatbelt
 - https://github.com/OTRF/Security-Datasets/blob/master/datasets/atomic/windows/discovery/host/cmd_seatbelt_group_user.zip
+date: 2023/06/02
+tags:
+  - attack.collection
+  - attack.t1119
 logsource:
   product: windows
   category: process_creation

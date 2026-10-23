@@ -249,13 +249,15 @@
 ```yaml
 title: MS14-068 PyKEK Kerberos Exploitation Attempt
 id: 7a8b9c2d-5e6f-4f3a-9b8c-2e3f4a5b6c7d
-status:stable
-description:Detects potential MS14-068 exploitation attempts using PyKEK to forge Kerberos tickets
+status: stable
+description: Detects potential MS14-068 exploitation attempts using PyKEK to forge Kerberos tickets
 references:
   - https://attack.mitre.org/techniques/T1212/
   - https://adsecurity.org/?p=556
+date: 2023/06/02
 tags:
   - attack.privilege_escalation
+  - attack.credential_access
   - attack.t1212
 logsource:
   product: windows

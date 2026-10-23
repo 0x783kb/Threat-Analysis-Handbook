@@ -240,6 +240,7 @@ DestinationHostname: attacker.com
 
 ```yaml
 title: 检测msxsl.exe或wmic.exe执行XSL脚本
+id: 60b45ce7-bce6-5b87-8e5f-25d5ca726e59
 description: Detects execution of msxsl.exe or wmic.exe loading XSL scripts, potentially executing malicious JavaScript or VBScript.
 status: experimental
 date: 2023/10/01
@@ -279,6 +280,7 @@ falsepositives:
 level: high
 tags:
   - attack.execution
+  - attack.defense_evasion
   - attack.t1220
 ```
 

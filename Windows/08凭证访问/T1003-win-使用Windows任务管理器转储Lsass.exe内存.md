@@ -212,11 +212,12 @@
 #### 规则一：任务管理器转储LSASS
 ```yaml
 title: 任务管理器转储LSASS内存检测
-id: k1f2g3h4-5i6j-7k8l-fm7g-4h5i6j7k8l9m
+id: fb79e820-8da2-5c91-8792-ea078283204d
 status: stable
 description: 检测任务管理器创建lsass.DMP文件的LSASS内存转储行为
 references:
   - https://attack.mitre.org/techniques/T1003/
+date: 2022/06/06
 tags:
   - attack.credential_access
   - attack.t1003
@@ -243,11 +244,12 @@ level: high
 #### 规则二：异常任务管理器启动
 ```yaml
 title: 异常任务管理器启动检测
-id: l2g3h4i5-6j7k-8l9m-gn8h-5i6j7k8l9m0n
+id: 9045a2b5-e96b-5e2c-a129-30fba27c7794
 status: stable
 description: 检测任务管理器异常启动，可能与LSASS转储相关
 references:
   - https://attack.mitre.org/techniques/T1003/
+date: 2022/06/06
 tags:
   - attack.credential_access
   - attack.t1003
@@ -256,14 +258,15 @@ logsource:
   category: process_creation
 detection:
   selection:
-    EventID|in:
+    EventID:
       - 4688
       - 1
     Image|endswith: '\taskmgr.exe'
-    ParentImage|notcontains:
+  filter_parent:
+    ParentImage|contains:
       - '\explorer.exe'
       - '\cmd.exe'
-  condition: selection
+  condition: selection and not filter_parent
 fields:
   - ComputerName
   - User

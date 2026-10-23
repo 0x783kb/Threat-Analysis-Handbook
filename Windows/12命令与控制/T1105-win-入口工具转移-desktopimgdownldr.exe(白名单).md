@@ -121,6 +121,7 @@ logsource:
   category: file_event
 tags:
   - attack.defense_evasion
+  - attack.command_and_control
   - attack.t1105
 detection:
   selection:

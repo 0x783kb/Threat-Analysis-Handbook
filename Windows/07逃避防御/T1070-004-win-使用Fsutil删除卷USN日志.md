@@ -61,21 +61,26 @@ Process Information:
 
 ```yml
 title: 使用Fsutil删除卷USN日志
+id: 15e8bb19-65af-57ec-b096-a36980aed7d8
 description: 识别使用fsutil.exe删除USN JRNL卷。攻击者使用此技术来消除利用漏洞后创建的文件的活动证据。
 status: experimental
 references:
     - https://www.elastic.co/guide/en/siem/guide/current/delete-volume-usn-journal-with-fsutil.html#delete-volume-usn-journal-with-fsutil
+date: 2022/06/06
+tags:
+  - attack.defense_evasion
+  - attack.t1070.004
 logsource:
-​    product: windows
-​    service: security
+     product: windows
+     service: security
 detection:
-​    selection:
-​       EventID:
-​            - 1 #sysmon
-​            - 4688 #Windows 安全日志
+     selection:
+        EventID:
+             - 1 #sysmon
+             - 4688 #Windows 安全日志
         New Process Name: 'fsutil.exe' #Application Name
         Commanline: 'usn deletejournal'
-​    condition: selection
+     condition: selection
 level: low
 ```
 

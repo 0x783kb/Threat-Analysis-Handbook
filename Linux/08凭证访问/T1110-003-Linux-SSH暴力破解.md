@@ -34,17 +34,22 @@ type=USER_AUTH msg=audit(1572163129.581:316): pid=2165 uid=0 auid=4294967295 ses
 ```
 ## 检测规则/思路
 ### sigma规则
-```
-yml
+```yaml
 title: linux下ssh暴力破解
+id: 006113e9-e431-50da-811a-e4cf4192e6a3
 description: Ubuntu18.04、kali
 references:
-tags: T1110-003
+tags:
+  - attack.credential_access
+  - attack.t1110.003
 status: experimental
-author: 12306Bro
+author: 0x783kb
+date: 2024/06/07
+references:
+  - https://attack.mitre.org/techniques/T1110/003
 logsource:
     product: linux
-    service: auth.log/audit.log
+    service: auditd   # 原写作 auth.log/audit.log
 detection:
     keywords:
        - 'Failed password for * ssh2' #linux auth.log
@@ -53,8 +58,7 @@ detection:
 level: medium
 ```
 ### elk公布检测规则
-```
-yml
+```yaml
 query = '''
 sequence by host.id, source.ip, user.name with maxspan=3s
   [authentication where event.action  in ("ssh_login", "user_login") and

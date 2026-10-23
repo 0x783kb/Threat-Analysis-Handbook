@@ -59,7 +59,7 @@
   Description: Windows Command Processor
   CommandLine: cmd.exe /c dir > C:\temp\output.txt
   ParentImage: C:\Windows\System32\notepad.exe
-  User: <domain>\12306Br0
+  User: <domain>\0x783kb
   IntegrityLevel: Medium
   ```
 - **Windows安全日志（事件ID 4688，Windows 10）**：
@@ -97,6 +97,8 @@
    description: 检测cmd.exe由异常父进程生成，可能表明恶意行为
    references:
      - https://attack.mitre.org/techniques/T1059/
+   author: 0x783kb
+   date: 2022/06/06
    tags:
      - attack.execution
      - attack.t1059

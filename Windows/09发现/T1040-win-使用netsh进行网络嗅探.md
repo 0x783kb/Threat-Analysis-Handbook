@@ -18,7 +18,6 @@ netsh trace start capture=yes tracefile=%temp%\trace.etl maxsize=10
 **输出示例**:
 ```
 跟踪配置:
--------------------------------------------------------------------
 状态:             正在运行
 跟踪文件:         C:\Users\heihei\AppData\Local\Temp\trace.etl
 附加:             关闭
@@ -44,7 +43,6 @@ netsh trace start capture=yes tracefile=C:\Temp\custom_trace.etl maxsize=50 repo
 **输出示例**:
 ```
 跟踪配置:
--------------------------------------------------------------------
 状态:             正在运行
 跟踪文件:         C:\Users\heihei\ustom_trace.etl
 附加:             关闭
@@ -111,15 +109,18 @@ del C:\Users\heihei\ustom_trace.cab >nul 2>&1
 
 ```yml
 title: Windows使用netsh进行网络嗅探
+id: 638db37e-d243-5451-8365-8d5e9acb21d9
 description: 检测通过netsh trace命令执行网络嗅探的行为，测试于Windows Server 2019
 references:
   - https://attack.mitre.org/techniques/T1040/
   - https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1040/T1040.md
 tags:
   - attack.collection
+  - attack.discovery
   - attack.t1040
 status: experimental
 author: 0x783kb
+date: 2022/06/06
 logsource:
   product: windows
   category: process_creation

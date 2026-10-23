@@ -89,7 +89,7 @@ Microsoft Windows [版本 10.0.18363.418]
 强制性标签: Mandatory Label\Medium Mandatory Level
 创建者进程 ID: 0xc78
 创建者进程名称: C:\Windows\System32\cmd.exe
-进程命令行: finger  user@example.host.com
+进程命令行: finger  user@example.host.com
 ```
 
 基于Sigma规则（`win_susp_finger_usage`），检测`finger.exe`的异常执行行为：
@@ -97,6 +97,7 @@ Microsoft Windows [版本 10.0.18363.418]
 ```yml
 title: Finger.exe Suspicious Invocation
 id: af491bca-e752-4b44-9c86-df5680533dbc
+status: experimental
 description: Detects suspicious aged finger.exe tool execution often used in malware attacks nowadays
 author: Florian Roth, omkar72, oscd.community
 date: 2021/02/24
@@ -108,8 +109,8 @@ tags:
 - attack.command_and_control
 - attack.t1105
 logsource:
-category: process_creation
-product: windows
+  category: process_creation
+  product: windows
 detection:
   selection:
     Image|endswith: '\finger.exe'

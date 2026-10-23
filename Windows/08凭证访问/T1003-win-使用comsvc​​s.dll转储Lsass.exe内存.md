@@ -207,68 +207,70 @@
 **规则一：检测rundll32调用comsvcs.dll转储LSASS**：
 ```yaml
 title: Rundll32调用comsvcs.dll转储LSASS检测
-id: l2g3h4i5-6j7k-8l9m-gn8h-5i6j7k8l9m0n
+id: 51c4ad66-0291-508a-8444-1e87d2d805ab
 status: stable
 description: 检测通过rundll32调用comsvcs.dll的MiniDump函数转储LSASS内存的行为
 references:
-  -https://attack.mitre.org/techniques/T1003/
-  -https://www.cnblogs.com/Yang34/p/14418572.html
+  - https://attack.mitre.org/techniques/T1003/
+  - https://www.cnblogs.com/Yang34/p/14418572.html
+date: 2022/06/06
 tags:
-  -attack.credential_access
-  -attack.t1003
+  - attack.credential_access
+  - attack.t1003
 logsource:
   category: process_creation
   product: windows
 detection:
   selection:
-    EventID|in:
-      -4688
-      -1
+    EventID:
+      - 4688
+      - 1
     Image|endswith: '\rundll32.exe'
     CommandLine|contains:
-      -'comsvcs.dll'
-      -'MiniDump'
-      -'.dmp'
+      - 'comsvcs.dll'
+      - 'MiniDump'
+      - '.dmp'
   condition: selection
 fields:
-  -ComputerName
-  -User
-  -Image
-  -CommandLine
-  -ParentImage
+  - ComputerName
+  - User
+  - Image
+  - CommandLine
+  - ParentImage
 falsepositives:
-  -管理员合法使用rundll32进行系统调试
-  -第三方软件调用comsvcs.dll
+  - 管理员合法使用rundll32进行系统调试
+  - 第三方软件调用comsvcs.dll
 level: critical
 ```
 
 **规则二：检测comsvcs.dll创建LSASS转储文件**：
 ```yaml
 title: comsvcs.dll创建LSASS转储文件检测
-id: m3h4i5j6-7k8l-9m0n-ho9i-6j7k8l9m0n1o
+id: 15b64fc3-3865-5c5d-8f55-4953ea6940cd
 status: stable
 description: 检测rundll32通过comsvcs.dll创建LSASS转储文件的行为
 references:
-  -https://attack.mitre.org/techniques/T1003/
+  - https://attack.mitre.org/techniques/T1003/
+date: 2022/06/06
 tags:
-  -attack.credential_access
-  -attack.t1003
+  - attack.credential_access
+  - attack.t1003
 logsource:
   category: file_event
   product: windows
 detection:
   selection:
-    EventID:11
+    EventID: 11
     Image|endswith: '\rundll32.exe'
     TargetFilename|contains: '.dmp'
   condition: selection
 fields:
-  -ComputerName
-  -User
-  -Image
-  -TargetFilename
+  - ComputerName
+  - User
+  - Image
+  - TargetFilename
 falsepositives:
-  -合法调试工具生成转储文件
+  - 合法调试工具生成转储文件
 level: high
 ```
 

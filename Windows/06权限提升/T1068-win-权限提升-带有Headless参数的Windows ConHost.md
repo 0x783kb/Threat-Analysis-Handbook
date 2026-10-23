@@ -128,13 +128,17 @@ Hashes: SHA1=A1B2C3D4E5F6A7B8C9D0E1F2A3B4C5D6
 ### Sigma规则
 ```yml
 title: Suspicious Windows ConHost with Headless Parameter
-id: e0f1a2b3-4c5d-6e7f-8a9b-0c1d2e3f4g5h
+id: a21e6394-2eea-5e6a-af46-5d7b8c89b802
 status: experimental
 description: Detects use of conhost.exe with --headless parameter, indicative of potential privilege escalation or defense evasion
 references:
   - https://attack.mitre.org/techniques/T1068
   - https://lolbas-project.github.io/lolbas/Binaries/Conhost/
   - https://research.splunk.com/endpoint/d5039508-998d-4cfc-8b5e-9dcd679d9a62/
+date: 2024/03/24
+tags:
+  - attack.privilege_escalation
+  - attack.t1068
 logsource:
   product: windows
   category: process_creation

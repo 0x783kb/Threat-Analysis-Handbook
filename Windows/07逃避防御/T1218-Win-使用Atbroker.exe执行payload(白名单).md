@@ -177,9 +177,7 @@ title: 检测可疑AtBroker.exe执行
 description: Detects AtBroker.exe executing non-standard Assistive Technology applications, potentially malicious.
 id: f24bcaea-0cd1-11eb-adc1-0242ac120002
 status: experimental
-author: 
-- Mateusz Wydra, 
-- oscd.community, 
+author: Mateusz Wydra, oscd.community
 date: 2023/10/01
 references:
   - https://attack.mitre.org/techniques/T1218/

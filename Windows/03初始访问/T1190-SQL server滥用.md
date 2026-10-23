@@ -120,6 +120,13 @@ SQL Server滥用可能在以下日志中留下痕迹：
    status: experimental
    description: 检测SQL Server进程启动可疑命令，可能表明攻击者滥用合法工具
    date: 2025/06/06
+   tags:
+     - attack.initial_access
+     - attack.t1190
+   references:
+     - http://malicious.com/payload.exe'
+     - https://zhuanlan.zhihu.com/p/25254794
+     - http://malicious.com/payload.exe
    logsource:
      category: process_creation
      product: windows

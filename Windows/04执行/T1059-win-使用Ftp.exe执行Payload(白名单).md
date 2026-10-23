@@ -37,7 +37,7 @@
 - **攻击机**：Kali Linux 2019，安装Metasploit Framework。  
 - **靶机**：Windows Server 2012，安装Sysmon并启用Windows安全日志。  
 - **网络**：确保攻击机和靶机可通信（Shell端口53）。  
-- **文件**：`payload.exe`已上传至靶机路径`C:\Users\12306Br0\Desktop\a\payload.exe`。
+- **文件**：`payload.exe`已上传至靶机路径`C:\Users\0x783kb\Desktop\a\payload.exe`。
 
 ### 攻击步骤
 1. **生成Payload**  
@@ -62,7 +62,7 @@
    在靶机上启动`ftp.exe`并执行本地Payload：
    ```cmd
    ftp
-   ftp> !C:\Users\12306Br0\Desktop\a\payload.exe
+   ftp> !C:\Users\0x783kb\Desktop\a\payload.exe
    ```
 
 **注意**：此复现仅用于学习和测试目的，需在合法授权的测试环境中进行，切勿用于非法活动。
@@ -79,7 +79,7 @@
    [+] Migrating to 2888
    [+] Successfully migrated to process
    meterpreter > getuid
-   Server username: 12306Br0-PC\12306Br0
+   Server username: 0x783kb-PC\0x783kb
    ```
 
 ## 测试留痕
@@ -93,7 +93,7 @@ EventID:4688 #安全日志，windows server 2012以上配置审核策略，可�
 EventID:4688
 进程信息:
 新进程 ID: 0x3f8
-新进程名: C:\Users\12306Br0\Desktop\a\payload.exe
+新进程名: C:\Users\0x783kb\Desktop\a\payload.exe
 
 EventID:5156
 应用程序信息:
@@ -115,9 +115,9 @@ Description: Windows Command Processor
 Product: Microsoft® Windows® Operating System
 Company: Microsoft Corporation
 OriginalFileName: Cmd.Exe
-CommandLine: C:\Windows\system32\cmd.exe /C C:\Users\12306Br0\Desktop\a\payload.exe
+CommandLine: C:\Windows\system32\cmd.exe /C C:\Users\0x783kb\Desktop\a\payload.exe
 CurrentDirectory: C:\Windows\system32\
-User: 12306Br0-PC\12306Br0
+User: 0x783kb-PC\0x783kb
 LogonGuid: {bb1f7c32-e7a1-5e9a-0000-0020ac500500}
 LogonId: 0x550ac
 TerminalSessionId: 1
@@ -148,6 +148,8 @@ ParentCommandLine: ftp
    references:
      - https://attack.mitre.org/techniques/T1059/
      - https://www.77169.net/html/235306.html
+   author: 0x783kb
+   date: 2023/04/12
    tags:
      - attack.execution
      - attack.t1059

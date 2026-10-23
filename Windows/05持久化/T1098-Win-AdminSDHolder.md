@@ -81,7 +81,6 @@ PS C:\Users\Administrator\Desktop\mimikatz_trunk> Get-ObjectAcl -ADSprefix "CN=A
 eference
 
 IdentityReference
------------------
 NT AUTHORITY\Authenticated Users
 NT AUTHORITY\SYSTEM
 BUILTIN\Administrators
@@ -162,12 +161,17 @@ windows安全日志
 
 ```yml
 title: Windows-AdminSDHolder
+id: 28df98d9-addc-521a-b263-a587181a44cb
+status: experimental
 description: Windows server 2008 R2（AD域控）
 references: 
     - https://github.com/infosecn1nja/AD-Attack-Defense/blob/master/README.md
     - https://github.com/0Kee-Team/WatchAD/blob/master/modules/detect/event_log/persistence/AdminSDHolder.py
-tags: 1098
-author: 12306Bro
+tags:
+  - attack.persistence
+  - attack.t1098
+author: 0x783kb
+date: 2025/05/25
 logsource:
     product: windows
     service: security

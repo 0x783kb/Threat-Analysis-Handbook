@@ -81,11 +81,18 @@ MandatoryLabel: S-1-16-8192
 
 ```yaml
 title: 使用pubprn.vbs下载执行Payload
+id: 7e6af261-92c2-521d-bc07-8977b11f5d56
 description: Detects execution of pubprn.vbs, a Microsoft-signed WSH script, used to parse and execute remote .sct scripts.
 status: experimental
+date: 2023/06/02
 tags:
   - attack.defense_evasion
   - attack.t1027
+references:
+  - https://gist.githubusercontent.com/enigma0x3/64adf8ba99d4485c478b67e03ae6b04a/raw/a006a47e4075785016a62f7e5170ef36f5247cdb/test.sct
+  - https://attack.mitre.org/techniques/T1027/
+  - https://github.com/M1k0er/pentest-notes
+  - https://gist.github.com/enigma0x3/64adf8ba99d4485c478b67e03ae6b04a
 logsource:
   category: process_creation
   product: windows

@@ -144,6 +144,7 @@ Invoke-BloodHound -CollectionMethod All -OutputDirectory C:\Temp\bloodhound_outp
 
 ```yml
 title: Windows BloodHound和SharpHound活动检测
+id: 710db57b-9921-59e1-a921-096b71e2ebd0
 description: 检测 BloodHound和SharpHound在Windows环境中执行的系统网络连接和权限组发现行为
 references:
   - https://attack.mitre.org/techniques/T1049/
@@ -156,6 +157,7 @@ tags:
   - attack.t1069
 status: experimental
 author: 0x783kb
+date: 2022/06/06
 logsource:
   product: windows
   category: process_creation
@@ -182,7 +184,7 @@ detection:
     TargetFilename|contains: 'bloodhound'
   selection_network:
     EventID: 3 # Sysmon 网络连接
-    DestinationPort|in:
+    DestinationPort:
       - 389
       - 636
       - 445

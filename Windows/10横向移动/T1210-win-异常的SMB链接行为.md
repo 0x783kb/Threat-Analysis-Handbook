@@ -140,6 +140,10 @@ references:
 - https://attack.mitre.org/techniques/T1210
 - https://www.elastic.co/guide/en/siem/guide/current/direct-outbound-smb-connection.html
 - https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=5156
+date: 2022/06/06
+tags:
+  - attack.lateral_movement
+  - attack.t1210
 logsource:
   product: windows
   category: network_connection

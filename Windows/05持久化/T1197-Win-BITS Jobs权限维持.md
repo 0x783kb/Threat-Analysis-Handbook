@@ -109,12 +109,13 @@
 2. **Sigma规则（BITS任务创建）**：
    ```yaml
    title: BITS任务创建或下载
-   id: v78901234-abcd567890-xyz123456789
+   id: c6b7cc43-ad21-59fa-874e-cc1a2f3cd093
    status: stable
    description: 检测通过bitsadmin.exe或PowerShell创建的BITS任务或下载行为
    references:
      - https://attack.mitre.org/techniques/T1197/
      - https://www.cnblogs.com/xiaozi/p/11833583.html
+   date: 2025/05/25
    tags:
      - attack.persistence
      - attack.t1197
@@ -151,12 +152,22 @@
 3. **Sigma规则（BITS网络活动）**：
    ```yaml
    title: BITS任务异常网络连接
-   id: w89012345-abcd678901-yza234567890
+   id: 83dfa4dc-d8c2-5c32-b672-33628ffbb1bf
    status: experimental
    description: 检测BITS任务发起的异常网络连接，可能与恶意传输相关
+   date: 2025/05/25
+   tags:
+     - attack.persistence
+     - attack.t1197
+   references:
+     - https://img2018.cnblogs.com/blog/894761/201911/894761-20191111110145812-668139170.png
+     - https://img2018.cnblogs.com/blog/894761/201911/894761-20191111110227491-23710429.png
+     - https://img2018.cnblogs.com/blog/894761/201911/894761-20191111110245500-1362389929.png
+     - https://s2.ax1x.com/2020/01/14/lqedzV.png
+     - https://s2.ax1x.com/2020/01/14/lqeWz6.png
    logsource:
+     category: network_connection
      product: windows
-     service: sysmon
    detection:
      selection:
        EventID: 3

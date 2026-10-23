@@ -17,13 +17,21 @@ MSExchange CmdletLogs
 暂无
 ## 检测规则/思路
 ### sigma规则
-```
+```yaml
 title: Use MSExchange CmdletLogs or Powershell logs to monitor ProxShell vulnerability exploitation behavior
+id: f2006c87-7c80-5c2a-ab90-43abe7fbd360
+status: experimental
 description: windows server 2016
 author: DHZN
+date: 2023/11/30
+tags:
+  - attack.t1190
+references:
+  - https://www.mandiant.com/resources/blog/pst-want-shell-proxyshell-exploiting-microsoft-exchange-servers
+  - https://ad-calcium.github.io/2021/08/exchange-proxyshell%E5%A4%8D%E7%8E%B0/
 logsource:
     product: windows
-    service: MSExchange CmdletLogs/PoweShell
+    service: msexchange-management   # 原写作 MSExchange CmdletLogs/PoweShell
 detection:
     selection1:
         EventID: 1
@@ -33,7 +41,7 @@ detection:
     selection2:
         EventID: 4104
         Message|contains|all: 'Get-MailboxExportRequest'
-    condition: selection
+    condition: selection1 or selection2
 level: medium
 ```
 ### 建议

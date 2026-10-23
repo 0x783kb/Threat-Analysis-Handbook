@@ -90,11 +90,14 @@ title: ieexec.exe Suspicious Invocation
 id: 7f2b3e5a-9c1d-4b7e-a2f3-8c9e4d7b3c2a
 status: experimental
 description: Detects suspicious execution of ieexec.exe, which can be used to download and run malicious code from a remote URL
-author: 12306Br0
+author: 0x783kb
 date: 2022/04/20
 references:
 - https://www.codercto.com/a/104908.html
 - https://lolbas-project.github.io/lolbas/Binaries/Ieexec/
+tags:
+  - attack.command_and_control
+  - attack.t1105
 logsource:
   product: windows
   category: process_creation

@@ -192,22 +192,29 @@ C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe malicious.xml
 ### Sigma规则
 新增Sigma规则以增强检测：
 ```yaml
-title:可疑Msbuild.exe执行XML文件
-id:9a8b7c6d-5e4f-3a2b-1c0d-9e8f7a6b5c4d
-description:检测msbuild.exe执行XML文件，可能用于代理执行恶意代码
-status:experimental
+title: 可疑Msbuild.exe执行XML文件
+id: 9a8b7c6d-5e4f-3a2b-1c0d-9e8f7a6b5c4d
+description: 检测msbuild.exe执行XML文件，可能用于代理执行恶意代码
+status: experimental
+references:
+  - https://img-blog.csdnimg.cn/20200413135116398.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2MzM0NDY0,size_16,color_FFFFFF,t_70
+  - https://img-blog.csdnimg.cn/20200413135530841.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2MzM0NDY0,size_16,color_FFFFFF,t_70
+  - https://img-blog.csdnimg.cn/20200413140326808.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2MzM0NDY0,size_16,color_FFFFFF,t_70
+  - https://img-blog.csdnimg.cn/20200413140707313.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2MzM0NDY0,size_16,color_FFFFFF,t_70
+  - https://img-blog.csdnimg.cn/20200413140810400.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2MzM0NDY0,size_16,color_FFFFFF,t_70
 logsource:
-  category:process_creation
-  product:windows
+  category: process_creation
+  product: windows
+# 注意: 依赖 Sysmon 独有字段 CurrentDirectory，Windows 安全日志(4688)无对应字段
 detection:
   selection:
-    Image|endswith:'\msbuild.exe'
-    CommandLine|contains:'.xml'
+    Image|endswith: '\msbuild.exe'
+    CommandLine|contains: '.xml'
   filter_legitimate:
     CurrentDirectory|contains:
       - 'C:\Program Files\'
       - 'C:\Program Files (x86)\'
-  condition:selection and not filter_legitimate
+  condition: selection and not filter_legitimate
 fields:
   - Image
   - CommandLine
@@ -215,9 +222,11 @@ fields:
   - User
 falsepositives:
   - 合法的开发活动
-level:high
+level: high
+date: 2026/01/18
 tags:
   - attack.execution
+  - attack.defense_evasion
   - attack.t1127
 ```
 

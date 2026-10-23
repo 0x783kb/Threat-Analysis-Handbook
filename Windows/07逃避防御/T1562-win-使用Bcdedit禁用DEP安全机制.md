@@ -70,7 +70,6 @@ bcdedit.exe /enum {current}
 **输出示例**：
 ```
 Windows Boot Loader
--------------------
 identifier              {current}
 ...
 nx                      AlwaysOff
@@ -125,6 +124,7 @@ nx                      AlwaysOff
 
 ```yaml
 title: 使用bcdedit.exe禁用Windows DEP安全机制
+id: a3f4c15c-dc71-52fd-8f84-5a4d600d625e
 description: Detects execution of bcdedit.exe to disable Data Execution Prevention (DEP) by setting nx to AlwaysOff.
 status: experimental
 date: 2023/10/01

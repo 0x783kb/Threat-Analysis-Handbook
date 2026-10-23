@@ -110,6 +110,7 @@
    references:
      - https://attack.mitre.org/techniques/T1059/
      - https://jingyan.baidu.com/article/75ab0bcbe20d5b97864db2ff.html
+   date: 2022/12/27
    tags:
      - attack.execution
      - attack.defense_evasion

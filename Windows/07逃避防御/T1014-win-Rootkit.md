@@ -103,12 +103,18 @@ ParentUser: QAX\Administrator
 
 ```yaml
 title: Suspicious Signed Driver Rootkit Activity
+id: 71e22ee2-d793-56d7-8e61-17c8621ff71c
+status: experimental
 description: Detects execution of processes associated with signed driver rootkits, such as those using puppetstrings.exe or similar tools.
 references:
   - https://attack.mitre.org/techniques/T1014/
+date: 2022/06/06
+tags:
+  - attack.defense_evasion
+  - attack.t1014
 logsource:
+  category: process_creation
   product: windows
-  service: sysmon
 detection:
   selection:
     EventID: 1

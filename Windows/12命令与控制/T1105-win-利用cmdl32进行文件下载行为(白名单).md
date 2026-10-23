@@ -198,19 +198,20 @@ C:\Users\Administrator\Desktop\test>move VPND1F2.tmp mimikatz.exe
 2. **Sigma规则（Cmdl32文件下载）**：
    ```yaml
    title: 利用cmdl32进行文件下载行为检测
-   id: g12345678-abcd-9012-3456-78901234klmn
+   id: de526cb0-6ec1-5028-8070-19de1e7bd09a
    status: stable
    description: 检测攻击者利用cmdl32.exe通过伪造配置文件下载恶意文件
    references:
      - https://attack.mitre.org/techniques/T1105/
      - https://www.t00ls.cc/thread-63254-1-1.html
+   date: 2022/06/06
    tags:
      - attack.command_and_control
      - attack.execution
      - attack.t1105
    logsource:
+     category: process_creation
      product: windows
-     service: sysmon
    detection:
      selection:
        EventID: 1
@@ -231,12 +232,18 @@ C:\Users\Administrator\Desktop\test>move VPND1F2.tmp mimikatz.exe
 3. **Sigma规则（配置文件创建）**：
    ```yaml
    title: Cmdl32配置文件创建检测
-   id: h23456789-abcd-0123-4567-89012345opqr
+   id: 1f78694d-2262-55ec-8a1e-06c2b655a7a1
    status: experimental
    description: 检测cmdl32相关配置文件（如settings.txt）的创建
+   date: 2022/06/06
+   tags:
+     - attack.command_and_control
+     - attack.t1105
+   references:
+     - http://10.211.55.2:8000/mimikatz.exe
    logsource:
+     category: file_event
      product: windows
-     service: sysmon
    detection:
      selection:
        EventID: 11

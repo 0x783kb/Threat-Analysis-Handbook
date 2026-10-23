@@ -208,12 +208,22 @@ Microsoft (R) DataSvcUtil 版本 3.5.0.0
 3. **Sigma规则（DataSvcUtil.exe网络连接）**：
    ```yaml
    title: DataSvcUtil.exe异常网络连接检测
-   id: s67890123-abcd-4567-8901-23456789tuvw
+   id: 93fc9160-2e58-521c-909d-d0ce98bd8316
    status: experimental
    description: 检测DataSvcUtil.exe发起的异常出站网络连接
+   date: 2025/05/25
+   tags:
+     - attack.exfiltration
+     - attack.t1567
+   references:
+     - https://attacker.com/?data=<encoded
+     - https://webhook.site/xxxxxxxxx?encodedfile
+     - https://webhook.site/xxxxxxxxx`为支持接收数据的有效URL。
+     - https://www.baidu.com/`报404，因目标不支持OData或文件上传。
+     - http://127.0.0.1:8080/upload
    logsource:
+     category: network_connection
      product: windows
-     service: sysmon
    detection:
      selection:
        EventID: 3

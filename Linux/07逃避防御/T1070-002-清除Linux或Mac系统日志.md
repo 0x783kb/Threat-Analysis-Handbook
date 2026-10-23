@@ -15,7 +15,7 @@ linux audit日志 （值得注意的是：Ubuntu默认情况下没有audit，需
 ## 测试复现
 ```
 bash
-yyds@12306Br0:/var/log/audit$ sudo rm -r /var/log/auth.log
+yyds@0x783kb:/var/log/audit$ sudo rm -r /var/log/auth.log
 ```
 ## 测试留痕
 基于audit日志

@@ -198,11 +198,12 @@
 #### 规则一：Mimikatz提取LSA凭据
 ```yaml
 title: Mimikatz提取LSA凭据检测
-id: p6q7r8s9-0t1u-2v3w-kx2l-9m0n1o2p3q4r
+id: 44780b7a-bb72-5566-a319-c03807601785
 status: stable
 description: 检测Mimikatz执行sekurlsa::logonpasswords提取LSA凭据
 references:
   - https://attack.mitre.org/techniques/T1003/004/
+date: 2022/06/06
 tags:
   - attack.credential_access
   - attack.t1003.004
@@ -211,7 +212,7 @@ logsource:
   category: process_creation
 detection:
   selection:
-    EventID|in:
+    EventID:
       - 4688
       - 1
     Image|endswith: '\mimikatz.exe'
@@ -230,11 +231,12 @@ level: critical
 #### 规则二：LSA注册表访问
 ```yaml
 title: LSA机密注册表访问检测
-id: q7r8s9t0-1u2v-3w4x-ly3m-0n1o2p3q4r5s
+id: 91902337-d0ef-559c-900e-5c64122d985f
 status: stable
 description: 检测Mimikatz或reg.exe访问LSA机密注册表
 references:
   - https://attack.mitre.org/techniques/T1003/004/
+date: 2022/06/06
 tags:
   - attack.credential_access
   - attack.t1003.004

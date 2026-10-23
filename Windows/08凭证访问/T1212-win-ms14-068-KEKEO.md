@@ -249,8 +249,10 @@ description: Detects potential MS14-068 exploitation attempts using KEKEO to for
 references:
   - https://attack.mitre.org/techniques/T1212/
   - https://adsecurity.org/?p=556
+date: 2023/06/02
 tags:
   - attack.privilege_escalation
+  - attack.credential_access
   - attack.t1212
 logsource:
   product: windows
@@ -275,7 +277,7 @@ detection:
     ServiceName|contains: 'krbtgt'
     TargetDomainName|contains: '.'
   filter_normal:
-    TargetUserName|in:
+    TargetUserName:
       - 'ntp$'
       - 'S-1-0-0'
   timeframe: 5s

@@ -218,16 +218,17 @@ jsc.exe /t:library Library.js
 ### Sigma规则
 新增Sigma规则以增强检测：
 ```yaml
-title:可疑Jsc.exe编译JavaScript代码
-id:7e8f9a0b-1c2d-3e4f-5a6b-7c8d9e0f1a2b
-description:检测jsc.exe编译JavaScript文件生成可执行文件或DLL，可能用于代理恶意代码
-status:experimental
+title: 可疑Jsc.exe编译JavaScript代码
+id: 7e8f9a0b-1c2d-3e4f-5a6b-7c8d9e0f1a2b
+description: 检测jsc.exe编译JavaScript文件生成可执行文件或DLL，可能用于代理恶意代码
+status: experimental
 logsource:
-  category:process_creation
-  product:windows
+  category: process_creation
+  product: windows
+# 注意: 依赖 Sysmon 独有字段 CurrentDirectory，Windows 安全日志(4688)无对应字段
 detection:
   selection:
-    Image|endswith:'\jsc.exe'
+    Image|endswith: '\jsc.exe'
     CommandLine|contains:
       - '.js'
       - '/t:library'
@@ -235,7 +236,7 @@ detection:
     CurrentDirectory|contains:
       - 'C:\Program Files\'
       - 'C:\Program Files (x86)\'
-  condition:selection and not filter_legitimate
+  condition: selection and not filter_legitimate
 fields:
   - Image
   - CommandLine
@@ -243,9 +244,11 @@ fields:
   - User
 falsepositives:
   - 合法的开发活动
-level:high
+level: high
+date: 2022/06/06
 tags:
   - attack.execution
+  - attack.defense_evasion
   - attack.t1127
 ```
 

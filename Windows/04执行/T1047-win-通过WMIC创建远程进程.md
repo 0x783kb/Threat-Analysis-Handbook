@@ -58,8 +58,13 @@ WMIC（WMI Command-line）是WMI的命令行接口，允许攻击者通过`wmic.
    id: 6a7b8c9d-4f2a-4b1c-a9e5-1f2e3c4d5e6f
    status: stable
    description: 检测WMIC通过远程进程创建执行命令，可能表明横向移动
-   author: 12306Bro
+   author: 0x783kb
    date: 2025/06/06
+   tags:
+     - attack.execution
+     - attack.t1047
+   references:
+     - https://s2.ax1x.com/2019/12/10/QDncB4.png
    logsource:
      category: process_creation
      product: windows

@@ -195,12 +195,12 @@ explorer.exe C:\Windows\System32\notepad.exe
 ### Sigma规则
 优化后的Sigma规则，结合官方规则并增强误报过滤：
 ```yaml
-title:ExplorerRootFlagProcessTreeBreak
-id:949f1ffb-6e85-4f00-ae1e-c3c5b190d605
-description:检测explorer.exe使用/root参数破坏进程树，可能用于防御规避
-status:experimental
-author:FlorianRoth
-date:2019/06/29
+title: ExplorerRootFlagProcessTreeBreak
+id: 949f1ffb-6e85-4f00-ae1e-c3c5b190d605
+description: 检测explorer.exe使用/root参数破坏进程树，可能用于防御规避
+status: experimental
+author: FlorianRoth
+date: 2019/06/29
 references:
     - https://twitter.com/CyberRaiju/status/1273597319322058752
     - https://twitter.com/bohops/status/1276357235954909188?s=12
@@ -208,11 +208,11 @@ tags:
     - attack.defense_evasion
     - attack.t1202
 logsource:
-    category:process_creation
-    product:windows
+    category: process_creation
+    product: windows
 detection:
     selection:
-        Image|endswith:'\explorer.exe'
+        Image|endswith: '\explorer.exe'
         CommandLine|contains|all:
             - '/root,'
             - '.exe'
@@ -220,7 +220,7 @@ detection:
         CommandLine|contains:
             - 'C:\Windows\explorer.exe'
             - 'C:\Program Files\'
-    condition:selection and not filter_legitimate
+    condition: selection and not filter_legitimate
 fields:
     - Image
     - CommandLine
@@ -228,7 +228,7 @@ fields:
     - User
 falsepositives:
     - 合法的文件资源管理器操作
-level:high
+level: high
 ```
 
 规则说明：

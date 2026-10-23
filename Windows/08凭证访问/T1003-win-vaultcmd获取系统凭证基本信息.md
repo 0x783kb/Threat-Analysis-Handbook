@@ -180,38 +180,39 @@
 **规则一：检测vaultcmd凭据查询行为**：
 ```yaml
 title: VaultCmd凭据查询检测
-id: h8c9d0e1-2f3g-4h9i-cj4d-1e2f3g4h5i6j
+id: 658a5443-aaa7-590d-b5e3-e654e9e31ee6
 status: stable
 description: 检测使用vaultcmd.exe查询Windows Credential Manager凭据的行为
 references:
-  -https://attack.mitre.org/techniques/T1003/
-  -https://3gstudent.github.io/3gstudent.github.io/%E6%B8%97%E9%80%8F%E6%8A%80%E5%B7%A7-Windows%E4%B8%ADCredential-Manager%E7%9A%84%E4%BF%A1%E6%81%AF%E8%8E%B7%E5%8F%96/
+  - https://attack.mitre.org/techniques/T1003/
+  - https://3gstudent.github.io/3gstudent.github.io/%E6%B8%97%E9%80%8F%E6%8A%80%E5%B7%A7-Windows%E4%B8%ADCredential-Manager%E7%9A%84%E4%BF%A1%E6%81%AF%E8%8E%B7%E5%8F%96/
+date: 2022/06/06
 tags:
-  -attack.credential_access
-  -attack.t1003
+  - attack.credential_access
+  - attack.t1003
 logsource:
   category: process_creation
   product: windows
 detection:
   selection:
-    EventID|in:
-      -4688
-      -1
+    EventID:
+      - 4688
+      - 1
     Image|endswith: '\VaultCmd.exe'
     CommandLine|contains:
-      -'/list'
-      -'/listschema'
-      -'/listcreds'
-      -'/listproperties'
+      - '/list'
+      - '/listschema'
+      - '/listcreds'
+      - '/listproperties'
   condition: selection
 fields:
-  -ComputerName
-  -User
-  -Image
-  -CommandLine
+  - ComputerName
+  - User
+  - Image
+  - CommandLine
 falsepositives:
-  -管理员合法查询CredentialManager
-  -系统维护脚本调用vaultcmd
+  - 管理员合法查询CredentialManager
+  - 系统维护脚本调用vaultcmd
 level: medium
 ```
 

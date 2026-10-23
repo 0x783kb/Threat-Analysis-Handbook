@@ -221,24 +221,25 @@ C:\Windows\Microsoft.NET\Framework64\v4.0.30319\aspnet_compiler.exe -v none -p C
 ### Sigma规则
 优化后的Sigma规则，增强误报过滤：
 ```yaml
-title:可疑Aspnet_compiler.exe执行
-id:a01b8329-5953-4f73-ae2d-aa01e1f35f00
-description:检测aspnet_compiler.exe编译C#代码，可能用于代理执行恶意Payload
-status:experimental
-author:frack113
-date:2021/11/24
+title: 可疑Aspnet_compiler.exe执行
+id: a01b8329-5953-4f73-ae2d-aa01e1f35f00
+description: 检测aspnet_compiler.exe编译C#代码，可能用于代理执行恶意Payload
+status: experimental
+author: frack113
+date: 2021/11/24
 references:
   - https://lolbas-project.github.io/lolbas/Binaries/Aspnet_Compiler/
 tags:
   - attack.defense_evasion
   - attack.t1127
 logsource:
-  category:process_creation
-  product:windows
+  category: process_creation
+  product: windows
+# 注意: 依赖 Sysmon 独有字段 CurrentDirectory，Windows 安全日志(4688)无对应字段
 detection:
   selection:
-    Image|contains:'\Microsoft.NET\Framework'
-    Image|endswith:'\aspnet_compiler.exe'
+    Image|contains: '\Microsoft.NET\Framework'
+    Image|endswith: '\aspnet_compiler.exe'
     CommandLine|contains:
       - '-v'
       - '-p'
@@ -247,7 +248,7 @@ detection:
     CurrentDirectory|contains:
       - 'C:\Program Files\'
       - 'C:\Program Files (x86)\'
-  condition:selection and not filter_legitimate
+  condition: selection and not filter_legitimate
 fields:
   - Image
   - CommandLine
@@ -255,7 +256,7 @@ fields:
   - User
 falsepositives:
   - 合法的ASP.NET开发活动
-level:high
+level: high
 ```
 
 规则说明：

@@ -24,8 +24,7 @@ icbc@icbc:/$ history
 ## 检测规则/思路
 ### splunk规则
 audit 日志
-```
-yml
+```yaml
 index=linux sourcetype="linux_audit" syscall=257 key=bash_history_110 | table host,auid,syscall,syscall_name,exe
 ```
 值得注意的是：你需要自行配置Audit审核规则
@@ -34,35 +33,51 @@ history
 sudo auditctl -w ~/.bash_history -k bash_history_110
 ```
 bash 历史记录
-```
-yml
+```yaml
 index=linux sourcetype=bash_history cat bash_history | table _time,host,user_name,bash_command
 ```
 ### sigma规则
-```
-yml
-title: 攻击者读取linux下~/.bash_history文件，查看是否包含相关凭据密码
-description: Ubuntu18.04
-references: https://github.com/12306Bro/Threat-hunting/blob/master/T1139-linux-Bash历史记录.md
-tags: T1552-003
+```yaml
+title: 攻击者读取linux下~/.bash_history文件，查看是否包含相关凭据密码（audit 日志）
+id: 029cd7f7-7098-52fc-9e48-2d8c7dff9e6c
+description: Ubuntu18.04，需自行配置 Audit 审核规则
+references:
+  - https://github.com/12306Bro/Threat-hunting/blob/master/T1139-linux-Bash历史记录.md
+tags:
+  - attack.credential_access
+  - attack.t1552.003
 status: experimental
-author: 12306Bro
+author: 0x783kb
+date: 2026/10/22
 logsource:
-​    product: linux
-​    service: audit
+  product: linux
+  service: auditd
 detection:
-​    keywords:
-​       - syscall=257 key=bash_history_110
-​    condition: keywords
-- ---------------------------------------------------------------------------------------
+  keywords:
+    - syscall=257 key=bash_history_110
+  condition: keywords
+level: medium
+```
+
+```yaml
+title: 攻击者读取linux下~/.bash_history文件，查看是否包含相关凭据密码（bash 历史记录）
+id: 5934e44c-2d8b-50b4-9a58-cc8f4047a49d
+description: Ubuntu18.04，依赖 bash history 记录
+references:
+  - https://github.com/12306Bro/Threat-hunting/blob/master/T1139-linux-Bash历史记录.md
+tags:
+  - attack.credential_access
+  - attack.t1552.003
+status: experimental
+author: 0x783kb
+date: 2026/10/22
 logsource:
-​    product: linux
-​    service: history
+  product: linux
+  service: history
 detection:
-​    selection:
-​    keywords:
-​       - cat bash_history
-​    condition: keywords
+  keywords:
+    - cat bash_history
+  condition: keywords
 level: medium
 ```
 ### 建议

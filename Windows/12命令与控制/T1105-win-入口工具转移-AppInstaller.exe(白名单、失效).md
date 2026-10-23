@@ -145,6 +145,7 @@ For more information go to aka.ms/ms-appinstaller-disabled.
    id: 7cff77e1-9663-46a3-8260-17f2e1aa9d0a
    description: Detects AppInstaller.exe spawned by the default handler for the ms-appinstaller URI, attempting to load/install a package from a URL
    status: experimental
+   date: 2022/06/06
    tags:
      - attack.command_and_control
      - attack.t1105
@@ -175,9 +176,18 @@ For more information go to aka.ms/ms-appinstaller-disabled.
    id: 8d0e88f2-9774-47b4-8361-28f3e2bb9e1b
    status: experimental
    description: Detects creation of temporary files by AppInstaller.exe in INetCache directory
+   date: 2022/06/06
+   tags:
+     - attack.command_and_control
+     - attack.t1105
+   references:
+     - https://pastebin.com/raw/tdyShwLw
+     - https://pastebin.com`）。
+     - https://twitter.com/notwhickey/status/1333900137232523264
+     - https://lolbas-project.github.io/lolbas/Binaries/AppInstaller/
    logsource:
+     category: file_event
      product: windows
-     service: sysmon
    detection:
      selection:
        EventID: 11

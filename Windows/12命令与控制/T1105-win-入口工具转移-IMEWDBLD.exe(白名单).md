@@ -121,11 +121,14 @@ title: IMEWDBLD.exe Suspicious Invocation
 id: b9e4c7f2-1a3b-4e5f-9c8d-3e2f5a6b7c9d
 status: experimental
 description: Detects suspicious execution of IMEWDBLD.exe, which can be used to download files from a remote URL
-author: 12306Br0
+author: 0x783kb
 date: 2022/04/20
 references:
 - https://lolbas-project.github.io/lolbas/Binaries/IMEWDBLD/
 - https://cloud.tencent.com/developer/article/1848645
+tags:
+  - attack.command_and_control
+  - attack.t1105
 logsource:
   product: windows
   category: process_creation

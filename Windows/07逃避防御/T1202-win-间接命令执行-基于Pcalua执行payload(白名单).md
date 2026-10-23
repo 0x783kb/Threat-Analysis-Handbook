@@ -100,7 +100,7 @@
 4. **靶机执行Payload**：
    - 本地加载：
      ```cmd
-     pcalua -m -a C:\Users\12306Br0\Desktop\shell.exe
+     pcalua -m -a C:\Users\0x783kb\Desktop\shell.exe
      ```
    - 远程加载：
      ```cmd
@@ -108,7 +108,7 @@
      ```
 
 5. **结果分析**：
-   - 成功：获得Meterpreter会话，`getuid`显示用户为`12306Br0-PC\12306Br0`。
+   - 成功：获得Meterpreter会话，`getuid`显示用户为`0x783kb-PC\0x783kb`。
    - 失败可能原因：
      - 防火墙阻止TCP连接。
      - SMB共享未正确配置（需检查权限或防火墙）。
@@ -122,13 +122,13 @@
   进程信息:
     新进程ID:0x864
     新进程名称:C:\Windows\System32\pcalua.exe
-    命令行:pcalua -m -a C:\Users\12306Br0\Desktop\a\shell.exe
+    命令行:pcalua -m -a C:\Users\0x783kb\Desktop\a\shell.exe
   ```
   ```
   进程信息:
     新进程ID:0xaf4
-    新进程名称:C:\Users\12306Br0\Desktop\a\shell.exe
-    命令行:"C:\Users\12306Br0\Desktop\a\shell.exe"
+    新进程名称:C:\Users\0x783kb\Desktop\a\shell.exe
+    命令行:"C:\Users\0x783kb\Desktop\a\shell.exe"
   ```
 - 事件ID5156：
   ```
@@ -148,18 +148,18 @@
   ```
   事件ID:1
   OriginalFileName:pcalua.exe
-  CommandLine:pcalua -m -a C:\Users\12306Br0\Desktop\a\shell.exe
-  CurrentDirectory:C:\Users\12306Br0\
-  User:12306Br0-PC\12306Br0
+  CommandLine:pcalua -m -a C:\Users\0x783kb\Desktop\a\shell.exe
+  CurrentDirectory:C:\Users\0x783kb\
+  User:0x783kb-PC\0x783kb
   Hashes:SHA1=280038828C2412F3867DDB22E07759CB26F7D8EA
   ParentImage:C:\Windows\System32\cmd.exe
   ```
   ```
   事件ID:1
   OriginalFileName:shell.exe
-  CommandLine:"C:\Users\12306Br0\Desktop\a\shell.exe"
-  CurrentDirectory:C:\Users\12306Br0\
-  User:12306Br0-PC\12306Br0
+  CommandLine:"C:\Users\0x783kb\Desktop\a\shell.exe"
+  CurrentDirectory:C:\Users\0x783kb\
+  User:0x783kb-PC\0x783kb
   Hashes:SHA1=C11C194CA5D0570F1BC85BB012F145BAFC9A4D6C
   ParentImage:C:\Windows\System32\pcalua.exe
   ```
@@ -186,22 +186,22 @@
 ### Sigma规则
 新增Sigma规则以增强检测：
 ```yaml
-title:可疑Pcalua.exe执行Payload
-id:9e8f0a1b-2c3d-4e5f-6b7c-8d9e0a1b2c3d
-description:检测pcalua.exe执行本地或远程可执行文件，可能用于代理恶意代码
-status:experimental
+title: 可疑Pcalua.exe执行Payload
+id: 9e8f0a1b-2c3d-4e5f-6b7c-8d9e0a1b2c3d
+description: 检测pcalua.exe执行本地或远程可执行文件，可能用于代理恶意代码
+status: experimental
 logsource:
-  category:process_creation
-  product:windows
+  category: process_creation
+  product: windows
 detection:
   selection:
-    Image|endswith:'\pcalua.exe'
-    CommandLine|contains:'-a'
+    Image|endswith: '\pcalua.exe'
+    CommandLine|contains: '-a'
   filter_legitimate:
     CommandLine|contains:
       - 'C:\ProgramFiles\'
       - 'C:\ProgramFiles(x86)\'
-  condition:selection and not filter_legitimate
+  condition: selection and not filter_legitimate
 fields:
   - Image
   - CommandLine
@@ -209,9 +209,12 @@ fields:
   - User
 falsepositives:
   - 合法的程序兼容性操作
-level:high
+level: high
+author: 0x783kb
+date: 2022/06/06
 tags:
   - attack.execution
+  - attack.defense_evasion
   - attack.t1202
 ```
 
