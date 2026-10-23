@@ -12,7 +12,6 @@ Threat-Analysis-Handbook 是一份面向实战的威胁检测知识库，按 MIT
 Windows/   Windows 终端检测（按战术目录：03初始访问 ~ 12命令与控制）
 Linux/     Linux 终端检测（按战术目录）
 Web/       Web 攻击检测（按年份目录：2020 ~ 2023）
-Sigma差距分析/  本地 Sigma 规则与官方 SigmaHQ 库的差距分析、规则清单与优化报告
 ```
 
 ## 规则说明
@@ -20,7 +19,6 @@ Sigma差距分析/  本地 Sigma 规则与官方 SigmaHQ 库的差距分析、�
 - 检测规则以 **Sigma 格式为主**（273 条，全部内嵌于文档的 YAML 代码块中）；Web 方向部分规则同时提供 Suricata 网络检测写法。
 - 全部 273 条 Sigma 规则已通过 **pySigma 解析与 Splunk 后端转换（100%）**，id 全库唯一，可直接导入 SIEM 使用。
 - 考虑到国内 Windows 日志策略配置现状，规则**不依赖 Sysmon**：`service: sysmon` 写法已全部改写为 Sigma 抽象 category（`process_creation` / `registry_event` / `network_connection` 等），可映射到安全日志 4688 等默认可得数据源。
-- 规则清单（含 title / id / logsource / level 等字段）见 [Sigma差距分析/本地Sigma规则清单.csv](Sigma差距分析/本地Sigma规则清单.csv)，优化过程见 [本地Sigma规则优化报告](Sigma差距分析/本地Sigma规则优化报告.md)。
 
 ## ATT&CK矩阵覆盖情况
 
